@@ -1,9 +1,9 @@
 {
-	"name": "lazrius-foundry-template",
-	"title": "Lazrius' FoundryVTT Template",
+	"name": "sadness-chan-redux",
+	"title": "Sadness Chan Redux",
 	"description": ".",
 	"version": "1.0.0",
-	"author": "Laz#9427",
+	"author": "madebyhilmi",
 	"scripts": ["bundle.js"],
 	"styles": ["lazrius-foundry-template.css"],
 	"languages": [],

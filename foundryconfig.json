@@ -1,5 +1,6 @@
 {
-    "moduleName": "Lazrius' FoundryVTT Template",
-    "repository": "https://github.com/Lazrius/FoundryVTT-Typescript-Module-Template",
-    "rawURL": "https://raw.githubusercontent.com/Lazrius/FoundryVTT-Typescript-Module-Template"
+  "dataPath": "C:\\Users\\2ndge\\AppData\\Local\\FoundryVTT",
+  "moduleName": "Sadness Chan Redux",
+  "repository": "https://github.com/madebyhilmi/sadness-chan-redux",
+  "rawURL": "https://raw.githubusercontent.com/madebyhilmi/sadness-chan-redux"
 }
