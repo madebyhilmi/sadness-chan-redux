@@ -1,7 +1,6 @@
 import assert from "assert"
 
 export default {
-	ModuleName: "lazrius-foundry-template",
 	IsModule: true, // If you are developing a system rather than a module, change this to false
 }
 

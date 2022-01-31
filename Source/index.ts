@@ -1,25 +1,34 @@
 import Logger from "./Utils/Logger";
-import Settings from "./Utils/Settings";
+import {Context} from "./Data/DSNRoll";
+import Helpers from "./Utils/Helpers";
+import Init from "./Hooks/Init";
 
-import PreloadTemplates from "./PreloadTemplates";
+Hooks.once('init', Init.initHook.bind(Init));
 
-Hooks.once("init", async () => {
-	Logger.Log("Initializing....")
-	Settings.Get().RegisterSettings();
-	await PreloadTemplates();
-});
-
-Hooks.once("setup", () => {
-	Logger.Log("Template module is being setup.")
-});
 
 Hooks.once("ready", () => {
-	Logger.Ok("Template module is now ready.");
+	Logger.Ok(Helpers.moduleTitle + " | Is ready to tickle you!")
 });
 
-Hooks.on("renderChatMessage", (message: ChatMessage, html: any, data: any) => {
-	if (message.roll?.result != null) {
-		const result: string = message.roll.result
-		Logger.Log(result)
-	}
-})
+Hooks.on('diceSoNiceRollStart', (messageId: string, context: Context) => {
+	Logger.LogWithTitle(Helpers.moduleTitle + " | Roll: ")
+	const roll = context.roll;
+	Logger.Warn(JSON.stringify(roll));
+	roll.terms.forEach(die => {
+		die.results.forEach(resultObject => {
+			Logger.Log("Rolled: " + resultObject.result);
+		})
+	});
+	context.blind = true;
+});
+/**
+ * This hook is used to add the command !sadness
+ * The command will modify the message to be a whisper with some sad stats ◔w◔
+ */
+//Hooks.on('preCreateChatMessage', PreCreateChatMessage.preCreateChatMessageHook.bind(PreCreateChatMessage));
+
+/**
+ * This hook is used to extract roll information from a message
+ * Supports default rolls and betterrolls5e
+ */
+//Hooks.on('createChatMessage', CreateChatMessage.createChatMessageHook.bind(CreateChatMessage));
