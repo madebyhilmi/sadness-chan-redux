@@ -1,4 +1,3 @@
-import Globals from "../Globals";
 import Color from "color";
 import Helpers from "./Helpers";
 
@@ -12,7 +11,7 @@ class Logger {
 	}
 
 	static LogWithTitle(str: string, colour: Color = Color("white")): void {
-		Logger.Log(Helpers.moduleTitle + str, colour);
+		Logger.Log(Helpers.moduleTitle + " | " + str, colour);
 	}
 
 	static Log(str: string, colour: Color = Color("white"), bold = false): void {

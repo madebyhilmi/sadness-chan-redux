@@ -1,25 +1,20 @@
-import {Assert} from "../Globals";
 import Logger from "./Logger";
 import utils from "./Helpers";
 import ListsEditor from "../Apps/ListsEditor";
 import listDefaults from "../Lists/listDefaults";
 import settingDefaults from "../Lists/settingsDefaults";
+import {Assert} from "../Globals";
 
 class Settings {
-	private static _instance: Settings;
-	private game: Game;
+	private static game: Game;
+	private static instance: Settings;
+
+	private SettingsInit = false;
 
 	private constructor() {
-		Logger.Ok("Loading configuration settings.");
-		/*
-		* TODO: Fix
-		*
-		* */
-		Assert(game instanceof Game);
-		this.game = game as Game;
+		Logger.Ok("Loading configuration settings...");
 	}
 
-	private static instance: Settings;
 
 	public static Get(): Settings {
 		if (Settings.instance)
@@ -29,14 +24,31 @@ class Settings {
 		return Settings.instance;
 	}
 
-	private SettingsInit = false;
+	public RegisterSettings(): void {
+		if (this.SettingsInit)
+			return;
 
-	private _registerSetting(key: string, data: any): void {
-		this.game.settings.register(utils.moduleName, key, data);
+		Assert(game instanceof Game);
+		Settings.game = game as Game;
+
+		Settings._registerMenus();
+		Settings._registerLists();
+
+		settingDefaults.SETTINGS.forEach((setting: any): void => {
+			Settings._registerSetting(setting.key, setting.data);
+		});
+
+		this.SettingsInit = true;
+		Logger.LogWithTitle("Settings initialized successfully.")
 	}
 
-	private _registerMenus(): void {
-		this.game.settings.registerMenu(utils.moduleName, settingDefaults.SETTING_KEYS.LISTS_EDITOR, {
+	private static _registerSetting(key: string, data: any): void {
+		Logger.LogWithTitle("key: " + key + ", data: " + data);
+		Settings.game.settings.register(utils.moduleName, key, data);
+	}
+
+	private static _registerMenus(): void {
+		Settings.game.settings.registerMenu(utils.moduleName, settingDefaults.SETTING_KEYS.LISTS_EDITOR, {
 			name: "Lists editor:",
 			label: "Open list editor",
 			icon: "fas fa-edit",
@@ -45,7 +57,7 @@ class Settings {
 		});
 	}
 
-	private _registerLists(): void {
+	private static _registerLists(): void {
 		const defaultList = JSON.stringify({
 			'fail': [...listDefaults.DEFAULT_CRIT_FAIL_COMMENTS],
 			'success': [...listDefaults.DEFAULT_CRIT_SUCCESS_COMMENTS],
@@ -61,12 +73,12 @@ class Settings {
 		});
 	}
 
-	private _getSetting(key: string): any {
-		return this.game.settings.get(utils.moduleName, key);
+	private static _getSetting(key: string): any {
+		return Settings.game.settings.get(utils.moduleName, key);
 	}
 
-	private _setSetting(key: string, data: any): Promise<any> {
-		return this.game.settings.set(utils.moduleName, key, JSON.stringify(data));
+	private static _setSetting(key: string, data: any): Promise<any> {
+		return Settings.game.settings.set(utils.moduleName, key, JSON.stringify(data));
 	}
 
 	public resetLists(): Promise<any> {
@@ -77,7 +89,7 @@ class Settings {
 			'portraits': [...listDefaults.DEFAULT_CRIT_SUCCESS_PORTRAITS]
 		});
 
-		return this.setSetting(settingDefaults.SETTING_KEYS.LISTS, defaultList);
+		return Settings._setSetting(settingDefaults.SETTING_KEYS.LISTS, defaultList);
 	}
 
 	public resetAllSettings() {
@@ -93,31 +105,17 @@ class Settings {
 		return this.setCounter({});
 	}
 
-	public RegisterSettings(): void {
-		if (this.SettingsInit)
-			return;
-		this._registerLists();
-		this._registerMenus();
-
-		settingDefaults.SETTINGS.forEach((setting: any): void => {
-			this._registerSetting(setting.key, setting.data);
-		});
-
-		this.SettingsInit = true;
-		Logger.LogWithTitle("Settings initialized successfully.")
-	}
-
 
 	public getSetting(key: string): any {
-		return this._getSetting(key);
+		return Settings._getSetting(key);
 	}
 
 	public setSetting(key: string, data: any): Promise<any> {
-		return this.game.settings.set(utils.moduleName, key, data);
+		return Settings.game.settings.set(utils.moduleName, key, data);
 	}
 
 	public setCounter(counterData: any): Promise<any> {
-		return this._setSetting(settingDefaults.SETTING_KEYS.COUNTER, counterData);
+		return Settings._setSetting(settingDefaults.SETTING_KEYS.COUNTER, counterData);
 	}
 
 	public getCounter(): any {
@@ -130,7 +128,7 @@ class Settings {
 	}
 
 	public setLists(listsData: any): Promise<any> {
-		return this._setSetting(settingDefaults.SETTING_KEYS.LISTS, listsData);
+		return Settings._setSetting(settingDefaults.SETTING_KEYS.LISTS, listsData);
 	}
 
 	public getLists(): any {

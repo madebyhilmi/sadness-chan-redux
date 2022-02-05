@@ -1,5 +1,5 @@
 import Helpers from "../Utils/Helpers";
-import Settings from "../Utils/Settings";
+import Settings from "../Utils/Settings"
 
 export default class ListsEditor extends FormApplication {
 	static get defaultOptions(): any {
@@ -13,6 +13,7 @@ export default class ListsEditor extends FormApplication {
 		};
 	}
 
+	// eslint-disable-next-line @typescript-eslint/ban-types
 	public getData(options?: {}): any {
 		return {
 			options: this.options,
@@ -32,7 +33,7 @@ export default class ListsEditor extends FormApplication {
 			'portraits': this._convertStringToList(portraits, oldLists.portraits),
 		};
 
-		return Settings.setLists(listsData);
+		return Settings.setLists(listsData)
 	}
 
 	public activateListeners(html: JQuery | HTMLElement): void {
