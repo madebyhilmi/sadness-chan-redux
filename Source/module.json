@@ -2,7 +2,7 @@
     "name": "sadness-chan-redux",
     "title": "Sadness Chan Redux",
     "description": "A chat 'bot' for FoundryVTT that's full of 'happy' and 'motivational' messages, to pick you up when your rolls let you down.",
-    "version": "2.0.0-alpha",
+    "version": "2.0.0",
     "author": "madebyhilmi, bmarian, HadaIonut",
     "scripts": [
         "bundle.js"

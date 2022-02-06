@@ -1,3 +1,5 @@
+import {Assert} from "../Globals";
+
 class Helpers {
 	private static _instance: Helpers;
 	private readonly _debugging: boolean;
@@ -25,14 +27,35 @@ class Helpers {
 		return Math.round((nr + Number.EPSILON) * 10) / 10;
 	}
 
-/*	public getAllPlayerNamesAndIDs() {
-		const users = game.users.entities;
-		const playerData = {};
-		users.forEach((user: any) => {
-			playerData[user.data.name] = user.data._id;
-		})
-		return playerData;
-	}*/
+	public getAllActivePlayers(): StoredDocument<User>[] {
+		const g = this.getGame();
+		if (g.users != undefined) {
+			return g.users.filter((user) => user.active);
+		}
+		return []
+	}
+
+
+	public getAllPlayerNamesAndIDs(): string[] {
+		const g = this.getGame();
+		if (g.users != undefined) {
+			g.collections.contents.forEach(item => {
+				if (item.name === "Users") {
+					const playerData: string[] = [];
+					item.forEach((user: any) => {
+						playerData[user.data.name] = user.data._id;
+					})
+					return playerData;
+				}
+			})
+		}
+		return []
+	}
+
+	public getGame(): Game {
+		Assert(game instanceof Game);
+		return game as Game;
+	}
 }
 
 export default Helpers.getInstance(false, false);

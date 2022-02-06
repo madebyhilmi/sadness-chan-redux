@@ -2,7 +2,9 @@ export default {
 	DEFAULT_CRIT_FAIL_COMMENTS: [
 		'Yet another failure maybe you should reconsider your life.',
 		'Hmm I think your parents also rolled a nat 1 when you were born.',
+/*
 		'Wow you are really trash you rolled [sc-d1] nat ones.',
+*/
 		'A powerful blow?!',
 		'Look out below!',
 		'You meant to do that.',
@@ -10,9 +12,11 @@ export default {
 		'Consider being a halfling in your next life...',
 		'You realise you are ruining your party\'s fun? Right? ... ',
 		'Tell the poor monster you are sorry for wasting it\'s time',
-		'You only got [sc-d1] more of those.',
+		/*'You only got [sc-d1] more of those.',*/
 		'One more fail added to the collection.',
+/*
 		'Wow, you rolled over [sc-avg]? It won\'t happen again!'
+*/
 	],
 	DEFAULT_CRIT_SUCCESS_COMMENTS: [
 		'Wow the algorithm is broken, you rolled above a 1. Let\'s fix that.',
@@ -20,7 +24,7 @@ export default {
 		'Who needs skill when you have luck...',
 		'Don\'t count on ever doing that again.',
 		'Even a blind dwarf finds a gem once in a while',
-		'You already have [sc-d20] of those. Are you collecting them? ... dice goblin ಠ_ಠ',
+		/*'You already have [sc-d20] of those. Are you collecting them? ... dice goblin ಠ_ಠ',*/
 		'[sc-name] has been banned for hacking...',
 		'Do that again... oh you can\'t ?',
 		'What are you trying to prove?'
