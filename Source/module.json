@@ -13,7 +13,7 @@
     "languages": [],
     "minimumCoreVersion": "9",
     "compatibleCoreVersion": "9",
-    "url": "https://github.com/Lazrius/FoundryVTT-Typescript-Module-Template",
+    "url": "https://github.com/madebyhilmi/sadness-chan-redux",
     "manifest": "https://raw.githubusercontent.com/madebyhilmi/sadness-chan-redux/master/Source/module.json",
     "download": "https://raw.githubusercontent.com/madebyhilmi/sadness-chan-redux/master/Package/sadness-chan-redux-v2.0.0.zip"
 }
