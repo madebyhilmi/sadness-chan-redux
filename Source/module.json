@@ -1,15 +1,19 @@
 {
-	"name": "lazrius-foundry-template",
-	"title": "Lazrius' FoundryVTT Template",
-	"description": ".",
-	"version": "1.0.0",
-	"author": "Laz#9427",
-	"scripts": ["bundle.js"],
-	"styles": ["lazrius-foundry-template.css"],
-	"languages": [],
-	"minimumCoreVersion": "0.8.8",
-	"compatibleCoreVersion": "0.8.8",
-	"url": "https://github.com/Lazrius/FoundryVTT-Typescript-Module-Template",
-	"manifest": "https://raw.githubusercontent.com/Lazrius/FoundryVTT-Typescript-Module-Template/master/Source/module.json",
-	"download": "https://raw.githubusercontent.com/Lazrius/FoundryVTT-Typescript-Module-Template/master/Package/lazrius-foundry-template-v1.0.0.zip"
+    "name": "sadness-chan-redux",
+    "title": "Sadness Chan Redux",
+    "description": "A chat 'bot' for FoundryVTT that's full of 'happy' and 'motivational' messages, to pick you up when your rolls let you down.",
+    "version": "2.0.0",
+    "author": "madebyhilmi, bmarian, HadaIonut",
+    "scripts": [
+        "bundle.js"
+    ],
+    "styles": [
+        "sadness-chan.css"
+    ],
+    "languages": [],
+    "minimumCoreVersion": "9",
+    "compatibleCoreVersion": "9",
+    "url": "https://github.com/Lazrius/FoundryVTT-Typescript-Module-Template",
+    "manifest": "https://raw.githubusercontent.com/madebyhilmi/sadness-chan-redux/master/Source/module.json",
+    "download": "https://raw.githubusercontent.com/madebyhilmi/sadness-chan-redux/master/Package/sadness-chan-redux-v2.0.0.zip"
 }

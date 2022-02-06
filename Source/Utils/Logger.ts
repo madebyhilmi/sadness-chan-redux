@@ -1,19 +1,23 @@
-import Globals from "../Globals";
 import Color from "color";
+import Helpers from "./Helpers";
 
 class Logger {
 	// static class
-	private constructor() {}
+	private constructor() {
+	}
 
 	private static GetCurrentTime(): string {
 		return `[${(new Date().toLocaleTimeString())}] `;
 	}
 
+	static LogWithTitle(str: string, colour: Color = Color("white")): void {
+		Logger.Log(Helpers.moduleTitle + " | " + str, colour);
+	}
+
 	static Log(str: string, colour: Color = Color("white"), bold = false): void {
 		const time = ToConsole(Logger.GetCurrentTime(), Color("gray"), false)
-		const moduleName = ToConsole(Globals.ModuleName + " ", Color("cyan"), true);
 		const text = ToConsole(str, colour, bold);
-		console.log(time.str + moduleName.str + text.str, ...time.params.concat(moduleName.params, text.params));
+		console.log(time.str + text.str, ...time.params.concat(text.params));
 	}
 
 	static Err(str: string): void {
